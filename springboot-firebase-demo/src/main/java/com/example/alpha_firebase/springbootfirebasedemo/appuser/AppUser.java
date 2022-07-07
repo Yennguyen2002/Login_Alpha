@@ -8,7 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -16,22 +16,21 @@ import java.util.Collections;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Entity
-
-
-
 public class AppUser implements UserDetails  {
-    @Id
-    @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
-    )
-    private String id;
+//    @Id
+//    @SequenceGenerator(
+//            name = "student_sequence",
+//            sequenceName = "student_sequence",
+//            allocationSize = 1
+//    )
+//    @GeneratedValue(
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "student_sequence"
+//    )
+//    private String id;
+
+// Thay vì sử dụng JPA thì firebase tự động generata id, tương tự những dòng trên
+
     private String name;
     private String phoneNumber;
     private String workAt;
@@ -43,7 +42,7 @@ public class AppUser implements UserDetails  {
     private String username;
     private String password;
 
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
     private AppUserRole appUswUserRole;
     private Boolean locked;
     private Boolean enabled;

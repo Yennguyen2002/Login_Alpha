@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### firebase service account ###
+src/main/java/com/example/alpha_firebase/springbootfirebasedemo/utils/alpha-service-account.json
