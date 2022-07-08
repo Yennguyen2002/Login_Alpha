@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/api/v1/registration", method = RequestMethod.GET)
 @AllArgsConstructor
 public class RegistrationController {
 
     private RegistrationService registrationService;
 
-    public String register(@RequestBody RegistrationRequest request){
+    @RequestMapping(path = "/api/v1/registration", method = RequestMethod.GET)
+    public String register(RegistrationRequest request){
         return "works";
     }
 }

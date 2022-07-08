@@ -27,7 +27,7 @@ public class AppUser implements UserDetails  {
 //            strategy = GenerationType.SEQUENCE,
 //            generator = "student_sequence"
 //    )
-//    private String id;
+    private String id;
 
 // Thay vì sử dụng JPA thì firebase tự động generata id, tương tự những dòng trên
 
@@ -43,22 +43,22 @@ public class AppUser implements UserDetails  {
     private String password;
 
 //    @Enumerated(EnumType.STRING)
-    private AppUserRole appUswUserRole;
+    private AppUserRole appUserRole;
     private Boolean locked;
     private Boolean enabled;
 
 
 
-    public AppUser(String fullname, String phoneNumber, String workAt,
+    public AppUser(String id, String name, String phoneNumber, String workAt,
 //                 ArrayList<String> questionPatchs, ArrayList<String> exams, ArrayList<String> examinations,
-                   AppUserRole appUswUserRole, Boolean locked, Boolean enabled, String username, String password) {
+                   AppUserRole appUserRole, Boolean locked, Boolean enabled, String username, String password) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.workAt = workAt;
 //        this.questionPatchs = questionPatchs;
 //        this.exams = exams;
 //        this.examinations = examinations;
-        this.appUswUserRole = appUswUserRole;
+        this.appUserRole = appUserRole;
         this.locked = locked;
         this.enabled = enabled;
         this.username = username;
@@ -68,18 +68,8 @@ public class AppUser implements UserDetails  {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority  =
-                new SimpleGrantedAuthority(appUswUserRole.name());
+                new SimpleGrantedAuthority(appUserRole.name());
         return Collections.singletonList(authority);
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
     }
 
     @Override
