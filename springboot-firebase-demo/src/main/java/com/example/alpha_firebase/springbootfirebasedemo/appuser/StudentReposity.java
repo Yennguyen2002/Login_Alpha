@@ -32,6 +32,8 @@ public class StudentReposity{
                 Map<String, Object> data = document.getData();
                 AppUser user = new AppUser(document.getId(),"Tuan", "", "", AppUserRole.USER,(boolean)data.get("locked"),
                         (boolean)data.get("enable"), (String) data.get("userName"),(String)data.get("password"));
+//                AppUser user = new AppUser(document.getId(),"Tuan", "", "", AppUserRole.USER,(boolean)data.get("locked"),
+//                        (boolean)data.get("enable"), (String) data.get("userName"),(String)data.get("password"));
                 return user;
             }
             logger.warn("wrong account");
