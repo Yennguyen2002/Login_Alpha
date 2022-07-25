@@ -31,7 +31,7 @@ public class AppUser implements UserDetails  {
 
 // Thay vì sử dụng JPA thì firebase tự động generata id, tương tự những dòng trên
 
-    private String name;
+    private String firstName;
     private String phoneNumber;
     private String workAt;
 
@@ -39,30 +39,30 @@ public class AppUser implements UserDetails  {
     //public ArrayList<String> exams;
     //public ArrayList<String> examinations;
 
-    private String username;
+    private String lastName;
     private String password;
 
 //    @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
     private Boolean locked;
-    private Boolean enabled;
+    private String email;
+//    private Boolean enabled;
 
 
 
-    public AppUser(String id, String name, String phoneNumber, String workAt,
-//                 ArrayList<String> questionPatchs, ArrayList<String> exams, ArrayList<String> examinations,
-                   AppUserRole appUserRole, Boolean locked, Boolean enabled, String username, String password) {
-        this.name = name;
+    public AppUser(String id, String firstName, String phoneNumber, String workAt,
+                   AppUserRole appUserRole, boolean locked, boolean enable, String lastName, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.workAt = workAt;
-//        this.questionPatchs = questionPatchs;
-//        this.exams = exams;
-//        this.examinations = examinations;
+        //@Enumerated(EnumType.STRING) error !
         this.appUserRole = appUserRole;
-        this.locked = locked;
-        this.enabled = enabled;
-        this.username = username;
+        this.email = email;
         this.password = password;
+    }
+
+    public AppUser(String firstname, String lastname, String email, String password, AppUserRole user) {
     }
 
     @Override
@@ -73,9 +73,21 @@ public class AppUser implements UserDetails  {
     }
 
     @Override
+    public String getUsername() {
+        return email;
+    }
+    public String getFirstName(){
+        return firstName;
+    }
+    public String getLastName(){
+        return lastName;
+    }
+
+    @Override
     public boolean isAccountNonExpired() {
         return true;
     }
+
 
     @Override
     public boolean isAccountNonLocked() {
@@ -89,6 +101,8 @@ public class AppUser implements UserDetails  {
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return false;
     }
+
+
 }

@@ -21,4 +21,8 @@ public class AppUserService implements UserDetailsService {
         logger.info(user.toString());
         return user;
     }
+//54'56
+    public String signUpUser(AppUser appUser){
+        return "";
+    }
 }
