@@ -84,7 +84,7 @@ class MultiAnswerSelect extends Question{
     private final ArrayList<String> answers = new ArrayList<>();
     private final ArrayList<Integer> correctAnswers = new ArrayList<>();
 
-    public ArrayList<Integer> getCorrectAnswer(){
+    public ArrayList<Integer> getCorrectAnswers(){
         return correctAnswers;
     }
 
@@ -154,12 +154,10 @@ class Matching extends Question{
 
     public void addMatch(Map.Entry<String, String> match){
         matchList.put(match.getKey(), match.getValue());
-        matchList.put(match.getValue(), match.getKey());
     }
 
     public void deleteMatch(Map.Entry<String, String> match){
         matchList.remove(match.getKey());
-        matchList.remove(match.getValue());
     }
 }
 

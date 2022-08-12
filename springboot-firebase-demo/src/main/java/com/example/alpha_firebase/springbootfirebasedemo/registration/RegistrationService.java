@@ -4,11 +4,13 @@ import com.example.alpha_firebase.springbootfirebasedemo.appuser.AppUser;
 import com.example.alpha_firebase.springbootfirebasedemo.appuser.AppUserRole;
 import com.example.alpha_firebase.springbootfirebasedemo.appuser.AppUserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
 public class RegistrationService {
+    @Autowired
     private final AppUserService appUserService;
     private EmailValidation emailValidation;
     public String register(RegistrationRequest request) {

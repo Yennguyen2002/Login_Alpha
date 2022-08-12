@@ -6,17 +6,23 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
-
 @Service
-public class StudentReposity{
-//    Optional<AppUser>findByEmail(String email);
-    private static final Firestore db = FireBase.getDb();
-    static Logger logger = LoggerFactory.getLogger(StudentReposity.class);
-    // Thay JPA bằng firebase
+public class StudentRepository{
+    static Logger logger = LoggerFactory.getLogger(StudentRepository.class);
+    private final FireBase fireBase;
+    private final Firestore db;
+    @Autowired
+    public StudentRepository(FireBase fireBase){
+        this.fireBase = fireBase;
+        this.db = fireBase.getDb();
+    }
     public AppUser findByEmail(String email){
         try{
             // Create a reference to the cities collection

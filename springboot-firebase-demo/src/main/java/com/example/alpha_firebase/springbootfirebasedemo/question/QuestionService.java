@@ -6,18 +6,23 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 @Service
 public class QuestionService{
-    private static final Firestore db = FireBase.getDb();
     static Logger logger = LoggerFactory.getLogger(QuestionService.class);
-
+    private final FireBase fireBase;
+    private final Firestore db;
+    @Autowired
+    public QuestionService(FireBase fireBase){
+        this.fireBase = fireBase;
+        this.db = fireBase.getDb();
+    }
     private String createQuestion(Question question, String userId) throws Exception{
         DocumentReference newQuestionDoc = db.collection("users/"+userId+"/questions").document();
 
