@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -31,6 +33,7 @@ class ResponseObject<T>{
 }
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(path = "/api/v1/question")
 public class QuestionController {
     static Logger logger = LoggerFactory.getLogger(QuestionController.class);
