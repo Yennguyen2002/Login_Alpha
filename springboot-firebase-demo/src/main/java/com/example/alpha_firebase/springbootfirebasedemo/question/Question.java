@@ -128,36 +128,43 @@ class MultiAnswerSelect extends Question{
 
 @NoArgsConstructor
 class Matching extends Question{
-    private final HashMap<String, String> matchList = new HashMap<>();
-
-    public void setMatchList(HashMap<String, String> matchList){
-        for (Map.Entry<String, String> match : matchList.entrySet()) {
-            addMatch(match);
-        }
+    private ArrayList<String> answersA = new ArrayList<>();
+    private ArrayList<String> answersB = new ArrayList<>();
+    public void setAnswersA(ArrayList<String> answersA){
+        this.answersA = answersA;
+    }
+    public void setAnswersB(ArrayList<String> answersB){
+        this.answersB = answersB;
+    }
+    public void setAnswers(ArrayList<String> answersA, ArrayList<String> answersB){
+        setAnswersA(answersA);
+        setAnswersB(answersB);
+    }
+    public ArrayList<String> getAnswersA(){
+        return answersA;
+    }
+    public ArrayList<String> getAnswersB(){
+        return answersB;
     }
 
-    public HashMap<String, String> getMatchList(){
-        return matchList;
-    }
-
-    public Matching(String id, String question, String belongTo, Date timestamp, Map<String, String> matchList,
-                             questionTypes type){
+    public Matching(String id, String question, String belongTo, Date timestamp,ArrayList<String> answersA,
+                             ArrayList<String> answersB,questionTypes type){
         super(id, question, belongTo, timestamp, type);
         try{
-            for (Map.Entry<String, String> match : matchList.entrySet()) {
-                addMatch(match);
-            }
+            setAnswers(answersA, answersB);
         }catch (Exception error){
             logger.error(error.getMessage());
         }
     }
 
-    public void addMatch(Map.Entry<String, String> match){
-        matchList.put(match.getKey(), match.getValue());
+    public void addMatch(String answerA, String answerB){
+        answersA.add(answerA);
+        answersB.add(answerB);
     }
 
-    public void deleteMatch(Map.Entry<String, String> match){
-        matchList.remove(match.getKey());
+    public void deleteMatch(int index){
+       answersA.remove(index);
+       answersB.remove(index);
     }
 }
 
