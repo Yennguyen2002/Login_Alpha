@@ -42,7 +42,7 @@ public class StudentRepository{
             return new AppUser();
         }catch (Exception error) {
             System.out.println(error.getMessage());
-            return new AppUser();
+            return null;
         }
     }
 }
