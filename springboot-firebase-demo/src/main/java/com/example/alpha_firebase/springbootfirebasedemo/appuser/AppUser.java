@@ -82,7 +82,9 @@ public class AppUser implements UserDetails  {
     public String getLastName(){
         return lastName;
     }
+    public String getPassword(){ return password;}
 
+    public void setPassword() {this.password = password;}
     @Override
     public boolean isAccountNonExpired() {
         return true;
