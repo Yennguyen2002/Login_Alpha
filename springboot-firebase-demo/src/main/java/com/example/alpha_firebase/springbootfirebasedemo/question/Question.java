@@ -14,7 +14,7 @@ import java.util.Map;
 
 enum questionTypes{
     MultiChoice,
-    MultiAnswerSelect,
+    MultiAnswersSelect,
     Matching,
     HoleFilling,
     TrueFalse
@@ -44,7 +44,7 @@ class MultiChoice extends Question{
     }
 
     public void setCorrectAnswer(int correctAnswer) throws Exception{
-        if (correctAnswer < 1 || correctAnswer > answers.size()){
+        if (correctAnswer < 0 || correctAnswer > answers.size()){
             throw new Exception("invalid correct answer");
         }
         this.correctAnswer = correctAnswer;
@@ -128,8 +128,8 @@ class MultiAnswerSelect extends Question{
 
 @NoArgsConstructor
 class Matching extends Question{
-    private ArrayList<String> answersA = new ArrayList<>();
-    private ArrayList<String> answersB = new ArrayList<>();
+    protected ArrayList<String> answersA = new ArrayList<>();
+    protected ArrayList<String> answersB = new ArrayList<>();
     public void setAnswersA(ArrayList<String> answersA){
         this.answersA = answersA;
     }
@@ -169,21 +169,21 @@ class Matching extends Question{
 }
 
 @NoArgsConstructor
-class HoleFilling extends Question{
-    private HashMap<String, String> answersList = new HashMap<>();
+class HoleFilling extends Matching{
+    private String fillingParagraph;
 
-    public HashMap<String, String> getAnswersList() {
-        return answersList;
+    public String getFillingParagraph() {
+        return fillingParagraph;
     }
 
-    public void setAnswersList(HashMap<String, String> answersList){
-        this.answersList = answersList;
+    public void setFillingParagraph(String fillingParagraph) {
+        this.fillingParagraph = fillingParagraph;
     }
 
-    public HoleFilling(String id, String question, String belongTo, Date timestamp, HashMap<String, String> answersList,
-                       questionTypes type){
-        super(id, question, belongTo, timestamp, type);
-        setAnswersList(answersList);
+    public HoleFilling(String id, String question, String belongTo, Date timestamp, ArrayList<String> answersA,
+                       ArrayList<String> answersB, questionTypes type, String fillingParagraph){
+        super(id, question, belongTo, timestamp, answersA, answersB, type);
+        setFillingParagraph(fillingParagraph);
     }
 }
 

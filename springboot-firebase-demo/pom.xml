@@ -15,6 +15,29 @@
 	<properties>
 		<java.version>18</java.version>
 	</properties>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>artifact-registry</id>
+			<url>artifactregistry://asia-southeast1-maven.pkg.dev/testcenter-eb4c8/alpha-backend</url>
+		</snapshotRepository>
+		<repository>
+			<id>artifact-registry</id>
+			<url>artifactregistry://asia-southeast1-maven.pkg.dev/testcenter-eb4c8/alpha-backend</url>
+		</repository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>artifact-registry</id>
+			<url>artifactregistry://asia-southeast1-maven.pkg.dev/testcenter-eb4c8/alpha-backend</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 	<dependencies>
 <!--		<dependency>-->
 <!--			<groupId>org.springframework.boot</groupId>-->
@@ -70,7 +93,27 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>2.6.0</version>
+				<configuration>
+					<container>
+						<mainClass>com.example.alpha_firebase.springbootfirebasedemo.SpringbootFirebaseDemoApplication</mainClass>
+					</container>
+					<from>
+						<image>openjdk@sha256:25b910311bfe15547ecab6895d5eb3f4ec718d6d53cced7eec78e4b889962e1f</image>
+					</from>
+				</configuration>
+			</plugin>
 		</plugins>
+		<extensions>
+			<extension>
+				<groupId>com.google.cloud.artifactregistry</groupId>
+				<artifactId>artifactregistry-maven-wagon</artifactId>
+				<version>2.1.0</version>
+			</extension>
+		</extensions>
 	</build>
 
 </project>
