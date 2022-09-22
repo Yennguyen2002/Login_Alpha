@@ -206,4 +206,37 @@ class TrueFalse extends Question{
     }
 }
 
+@NoArgsConstructor
+class CreateTopic extends Question {
+    Scanner sc = new Scanner(System.in);
+    ArrayList <Question> qs = new ArrayList<>();
+    String ans;
+    String newId;
+    public void initailize (Question id){
+        do{
+            qs.add(id);
+            if (id.getId().equals("0")){
+                System.out.print("Do you stop? [y/n]: ");
+                ans = sc.nextLine();
+                if (ans.equals("y")){
+                    return;
+                }else{
+                    newId = sc.nextLine();
+                    id.setId(newId);
+                }
+            }
+        }while(true);
+    }
+    public ArrayList random (int amount){
+        ArrayList<Question> topic = new ArrayList<>();
+        boolean check = true;
+        for (int i = 0; i < amount; i++ ){;
+            int index = (int)(Math.random()*qs.size());
+            topic.add(qs.get(index));
+        }
+        return topic;
+    }
+}
+
+
 
