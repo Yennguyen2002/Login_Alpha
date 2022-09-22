@@ -229,7 +229,6 @@ class CreateTopic extends Question {
     }
     public ArrayList random (int amount){
         ArrayList<Question> topic = new ArrayList<>();
-        boolean check = true;
         for (int i = 0; i < amount; i++ ){;
             int index = (int)(Math.random()*qs.size());
             topic.add(qs.get(index));
